@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Card from './../shared/Card/Card';
 import Loading from './../shared/Loading/Loading';
-import { requestArticles } from '../../ducks/mediumReducer';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { getMediumArticles } from './../../ducks/mediumReducer';
 
 class Medium extends Component {
-componentDidMount(){
-  this.props.requestArticles()
-}
+  componentDidMount() {
+    this.props.getMediumArticles()
+  }
+
   render() {
     const articles = this.props.articles.map((article => <Card key={article.id} article={article} />))
     return (
@@ -23,7 +24,7 @@ function mapStateToProps(state) {
   return state.medium
 }
 
-export default connect(mapStateToProps, { requestArticles })(Medium);
+export default connect(mapStateToProps, { getMediumArticles })(Medium);
 
 const styles = {
   logo: { width: '250px' }
